@@ -1,7 +1,6 @@
-{ pkgs, inputs ... }: {
-
+{ pkgs, inputs, ... }: {
   imports = [
-    inputs.zen-browser.homeModules.beta
+    ./apps/vesktop.nix
   ];
 
   home.username = "eus";
@@ -14,18 +13,26 @@
     jetbrains.idea-community
     jdk21
     maven
-    nodejs_26 
+    nodejs_24
+    vscode
     corepack
-    Vesktop
     mangohud
     gamemode
     protonup-qt
+    inputs.zen-browser.packages.${pkgs.system}.default
+    gh
   ];
 
   programs.git = {
     enable = true;
-    userName = "";
-    userEmail = "";
+    settings = {
+      user.email = "fillipemcoelho@hotmail.com";
+      user.name  = "FillipeMendesC";
+    };
+    extraConfig = {
+      init.defaultBranch = "main";
+      pull.rebase = true;
+    };
   };
 
   home.stateVersion = "25.11"; 
