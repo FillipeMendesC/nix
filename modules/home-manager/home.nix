@@ -9,8 +9,8 @@
   home.packages = with pkgs; [
     git
     neovim
-    jetbrains.idea-ultimate
-    jetbrains.idea-community
+    jetbrains.idea
+    jetbrains.idea-oss
     jdk21
     maven
     nodejs_24
