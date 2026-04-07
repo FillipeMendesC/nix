@@ -36,7 +36,6 @@
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
-    testGui = false;
   
     dockerSocket.enable = true; 
   
