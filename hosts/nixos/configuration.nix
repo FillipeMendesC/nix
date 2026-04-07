@@ -33,9 +33,19 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    testGui = false;
+  
+    dockerSocket.enable = true; 
+  
+    defaultNetwork.settings.dns_enabled = true;
+  };
+
   users.users.eus = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; 
+    extraGroups = [ "wheel" "networkmanager" "podman"]; 
     initialPassword = "nixos"; 
   };
 
