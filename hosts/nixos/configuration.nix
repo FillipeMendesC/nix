@@ -36,7 +36,7 @@
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
-  
+    dockerCompose = true;
     dockerSocket.enable = true; 
   
     defaultNetwork.settings.dns_enabled = true;
