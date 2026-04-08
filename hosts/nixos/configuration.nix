@@ -16,19 +16,25 @@
     };
   };
 
+  boot = {
 
-  
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    systemd-boot.enable = false;
-    grub = {
-        enable = true;
-        gfxmodeEfi = "1920x1200";
-        gfxpayloadEfi = "keep";
-        milk-theme.enable = true;
-        device = "nodev";
-        efiSupport = true;
-      };
+    loader = {
+      efi.canTouchEfiVariables = true;
+      systemd-boot.enable = false;
+      grub = {
+          enable = true;
+          gfxmodeEfi = "1920x1200";
+          gfxpayloadEfi = "keep";
+          milk-theme.enable = true;
+          device = "nodev";
+          efiSupport = true;
+        };
+    };
+
+    kernelParams = [ 
+      "nvidia.NVreg_DynamicPowerManagement=0x02" 
+      "nvidia.NVreg_EnableS0ixPowerManagement=1"
+    ];
   };
   
 
@@ -41,6 +47,13 @@
     displayManager.sddm.enable = true;
     desktopManager.plasma6.enable = true;
     xserver.videoDrivers = [ "nvidia" ];
+    switcherooControl.enable = true;
+    supergfxd = {
+      enable = true;
+      settings = {
+        mode = "Hybrid"
+      };
+    }; 
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -61,9 +74,23 @@
     };
     nvidia = {
       modesetting.enable = true;
-      open = true;
+      open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
+      nvidiaPersistenced = false;
+      dynamicBoost.enable = true;
+      powerManagement= {
+        enable = true;
+        finegrained = true;
+      };
+      prime = {
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
+        intelBusId = "PCI:0:2:0"; 
+        nvidiaBusId = "PCI:1:0:0";
+      };
     };
   };
 
@@ -88,6 +115,7 @@
     ];
     variables = {
       DOCKER_HOST = "unix:///run/user/1000/podman/podman.sock";
+      NIXOS_OZONE_WL = "1";
     };
   };
   
