@@ -21,9 +21,15 @@
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
   };
 
-  hardware.graphics.enable = true;
+  programs.gamemode.enable = true;
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
@@ -36,7 +42,6 @@
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
-    dockerCompose = true;
     dockerSocket.enable = true; 
   
     defaultNetwork.settings.dns_enabled = true;
@@ -44,14 +49,19 @@
 
   users.users.eus = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "podman"]; 
+    extraGroups = [ "wheel" "networkmanager" "podman" "docker"]; 
     initialPassword = "nixos"; 
   };
 
   environment.systemPackages = with pkgs; [
     git
     curl
+    docker-compose
   ];
+
+  environment.variables = {
+    DOCKER_HOST = "unix:///run/user/1000/podman/podman.sock";
+  };
 
   nix.gc = {
     automatic = true;

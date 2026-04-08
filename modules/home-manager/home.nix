@@ -28,8 +28,6 @@
     settings = {
       user.email = "fillipemcoelho@hotmail.com";
       user.name  = "FillipeMendesC";
-    };
-    extraConfig = {
       init.defaultBranch = "main";
       pull.rebase = true;
     };
