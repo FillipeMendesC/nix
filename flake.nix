@@ -13,10 +13,16 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... }
-  @inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
+
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [ overlay-unstable ];
+      };
+
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           inherit system;
@@ -26,19 +32,19 @@
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
-
         modules = [
           ./hosts/nixos/configuration.nix
           { nixpkgs.overlays = [ overlay-unstable ]; }
-
-          inputs.home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.eus = import ./modules/home-manager/home.nix;
-          }
-
           inputs.milk-grub-theme.nixosModule
+        ];
+      };
+
+      homeConfigurations."eus" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
+        modules = [
+          ./modules/home-manager/home.nix
+          { nixpkgs.overlays = [ overlay-unstable ]; }
         ];
       };
     };

@@ -5,6 +5,7 @@
 
   home.username = "eus";
   home.homeDirectory = "/home/eus";
+  programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
     git
@@ -21,6 +22,7 @@
     protonup-qt
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     gh
+    obsidian
   ];
 
   programs.git = {
