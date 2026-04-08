@@ -2,6 +2,7 @@
 
   imports = [
     ./hardware-configuration.nix
+    ./battery.nix
   ];
 
   nix = {
@@ -36,7 +37,6 @@
       "nvidia.NVreg_EnableS0ixPowerManagement=1"
     ];
   };
-  
 
   networking = {
     hostName = "nixos";
@@ -51,9 +51,9 @@
     supergfxd = {
       enable = true;
       settings = {
-        mode = "Hybrid"
+        mode = "Hybrid";
       };
-    }; 
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
