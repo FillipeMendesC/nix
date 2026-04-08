@@ -16,10 +16,21 @@
     };
   };
 
+
+  
   boot.loader = {
-    systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
+    systemd-boot.enable = false;
+    grub = {
+        enable = true;
+        gfxmodeEfi = "1920x1200";
+        gfxpayloadEfi = "keep";
+        milk-theme.enable = true;
+        device = "nodev";
+        efiSupport = true;
+      };
   };
+  
 
   networking = {
     hostName = "nixos";

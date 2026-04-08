@@ -42,18 +42,36 @@
         "type": "github"
       }
     },
-    "nixpkgs": {
+    "milk-grub-theme": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
       "locked": {
-        "lastModified": 1775305101,
-        "narHash": "sha256-/74n1oQPtKG52Yw41cbToxspxHbYz6O3vi+XEw16Qe8=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "36a601196c4ebf49e035270e10b2d103fe39076b",
+        "lastModified": 1770555223,
+        "narHash": "sha256-cjM0SdWm7CQkxRn3kk9qRzoUGH6hQFkguxZQXQq5aig=",
+        "owner": "gemakfy",
+        "repo": "MilkGrub",
+        "rev": "28644023f74e4830d97ef3a551714fe6c984f02b",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-25.11",
+        "owner": "gemakfy",
+        "repo": "MilkGrub",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1750605355,
+        "narHash": "sha256-xT8cPLTxlktxI9vSdoBlAVK7dXgd8IK59j7ZwzkkhnI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "3078b9a9e75f1790e6d6ef9955fdc6a2d1740cc6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -76,6 +94,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1775305101,
+        "narHash": "sha256-/74n1oQPtKG52Yw41cbToxspxHbYz6O3vi+XEw16Qe8=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "36a601196c4ebf49e035270e10b2d103fe39076b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1774709303,
         "narHash": "sha256-D3Q07BbIA2KnTcSXIqqu9P586uWxN74zNoCH3h2ESHg=",
         "owner": "nixos",
@@ -93,7 +127,8 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs",
+        "milk-grub-theme": "milk-grub-theme",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "zen-browser": "zen-browser"
       }
@@ -101,7 +136,7 @@
     "zen-browser": {
       "inputs": {
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1775453133,

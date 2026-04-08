@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
+    milk-grub-theme.url = "github:gemakfy/MilkGrub";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,6 +37,8 @@
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.eus = import ./modules/home-manager/home.nix;
           }
+
+          inputs.milk-grub-theme.nixosModule
         ];
       };
     };
