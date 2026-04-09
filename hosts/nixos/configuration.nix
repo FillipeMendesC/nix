@@ -33,7 +33,8 @@
     };
 
     kernelParams = [ 
-      "nvidia.NVreg_DynamicPowerManagement=0x02" 
+      "i915.enable_guc=3" 
+      "i915.enable_fbc=1"
       "nvidia.NVreg_EnableS0ixPowerManagement=1"
     ];
   };
@@ -48,12 +49,10 @@
     desktopManager.plasma6.enable = true;
     xserver.videoDrivers = [ "nvidia" ];
     switcherooControl.enable = true;
-    supergfxd = {
-      enable = true;
-      settings = {
-        mode = "Hybrid";
-      };
-    };
+    udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{device}=="0x25a9", ATTR{power/control}="auto"
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x460d", ATTR{power/control}="auto"
+    '';
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -65,31 +64,33 @@
       dedicatedServer.openFirewall = true;
       gamescopeSession.enable = true;
     };
+    gamescope.enable = true;
   };
 
   hardware = {
     graphics = {
       enable = true;
       enable32Bit = true;
+
+      extraPackages = with pkgs; [
+        intel-media-driver 
+        intel-vaapi-driver
+        libvdpau-va-gl
+      ];
     };
     nvidia = {
       modesetting.enable = true;
-      open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-      nvidiaPersistenced = false;
-      dynamicBoost.enable = true;
+      open = true;
       powerManagement= {
         enable = true;
         finegrained = true;
       };
       prime = {
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
-        intelBusId = "PCI:0:2:0"; 
-        nvidiaBusId = "PCI:1:0:0";
+        offload.enable = true;
+        offload.enableOffloadCmd = true;
+        intelBusId  = "PCI:0@0:2:0"; 
+        nvidiaBusId = "PCI:1@0:0:0";
       };
     };
   };
@@ -115,7 +116,11 @@
     ];
     variables = {
       DOCKER_HOST = "unix:///run/user/1000/podman/podman.sock";
-      NIXOS_OZONE_WL = "1";
+    };
+    sessionVariables = {
+      EGL_PLATFORM = "wayland";
+      NIXOS_OZONE_WL = "1";          
+      __NV_PRIME_RENDER_OFFLOAD = "0"; 
     };
   };
   
