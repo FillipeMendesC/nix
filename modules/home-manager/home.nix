@@ -38,6 +38,13 @@
       };
     };
 
+    gh = {
+	enable = true;
+	settings = {
+	   git_protocol = "https";
+	};
+    };
+
     zsh = {
       enable = true;
       enableCompletion = true;
