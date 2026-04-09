@@ -34,7 +34,9 @@
     kernelParams = [ 
       "i915.enable_guc=3" 
       "i915.enable_fbc=1"
+      "nvidia.NVreg_DynamicPowerManagement=0x02"
       "nvidia.NVreg_EnableS0ixPowerManagement=1"
+      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
     ];
   };
 
@@ -48,10 +50,13 @@
     desktopManager.plasma6.enable = true;
     xserver.videoDrivers = [ "nvidia" ];
     switcherooControl.enable = true;
-    udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{device}=="0x25a9", ATTR{power/control}="auto"
-    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x460d", ATTR{power/control}="auto"
-    '';
+    #udev.extraRules = ''
+    # 1. Intel PCIe Bridge
+    #ACTION=="add|change", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x460d", ATTR{power/control}="auto"
+    
+    # 2. NVIDIA GPU
+    #ACTION=="add|change", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{device}=="0x25a9", ATTR{power/control}="auto"
+    #    '';
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -116,18 +121,18 @@
     ];
     variables = {
       DOCKER_HOST = "unix:///run/user/1000/podman/podman.sock";
+      DRI_PRIME = "0";
     };
     sessionVariables = {
       EGL_PLATFORM = "wayland";
-      NIXOS_OZONE_WL = "1";          
-      __NV_PRIME_RENDER_OFFLOAD = "0"; 
+      NIXOS_OZONE_WL = "1";
     };
   };
 
   fonts.packages = with pkgs; [
-    nerd-fonts.meslo-lg 
+    nerd-fonts.meslo-lg
   ];
-  
+ 
   time.timeZone = "America/Sao_Paulo";
 
   i18n = {
