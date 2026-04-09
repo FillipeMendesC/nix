@@ -18,7 +18,6 @@
   };
 
   boot = {
-
     loader = {
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = false;
@@ -65,6 +64,7 @@
       gamescopeSession.enable = true;
     };
     gamescope.enable = true;
+    zsh.enable = true;
   };
 
   hardware = {
@@ -105,7 +105,7 @@
   users.users.eus = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "podman" "docker"]; 
-    initialPassword = "nixos"; 
+    shell = pkgs.zsh;
   };
 
   environment = {
@@ -123,6 +123,10 @@
       __NV_PRIME_RENDER_OFFLOAD = "0"; 
     };
   };
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.meslo-lg 
+  ];
   
   time.timeZone = "America/Sao_Paulo";
 
