@@ -1,7 +1,9 @@
-{ pkgs, inputs, config, ... }: {
+{ pkgs, inputs, config, ... }: 
+{
   imports = [
     ./apps/vesktop.nix
     ./apps/kitty.nix
+    ./apps/ns-build.nix
   ];
 
   home.username = "eus";
@@ -25,9 +27,13 @@
     gh
     obsidian
     bruno
+    fzf
+    nix-search-tv
   ];
 
+
   programs = {
+    
     git = {
       enable = true;
       settings = {
@@ -39,10 +45,10 @@
     };
 
     gh = {
-	enable = true;
-	settings = {
-	   git_protocol = "https";
-	};
+      enable = true;
+      settings = {
+        git_protocol = "https";
+      };
     };
 
     zsh = {

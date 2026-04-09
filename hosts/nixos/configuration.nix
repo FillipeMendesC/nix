@@ -38,6 +38,7 @@
       "nvidia.NVreg_EnableS0ixPowerManagement=1"
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
     ];
+    resumeDevice = "/dev/nvme0n1p3";
   };
 
   networking = {
@@ -50,13 +51,6 @@
     desktopManager.plasma6.enable = true;
     xserver.videoDrivers = [ "nvidia" ];
     switcherooControl.enable = true;
-    #udev.extraRules = ''
-    # 1. Intel PCIe Bridge
-    #ACTION=="add|change", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x460d", ATTR{power/control}="auto"
-    
-    # 2. NVIDIA GPU
-    #ACTION=="add|change", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{device}=="0x25a9", ATTR{power/control}="auto"
-    #    '';
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -97,7 +91,7 @@
         intelBusId  = "PCI:0@0:2:0"; 
         nvidiaBusId = "PCI:1@0:0:0";
       };
-    };
+    }; 
   };
 
   virtualisation.podman = {
@@ -121,7 +115,7 @@
     ];
     variables = {
       DOCKER_HOST = "unix:///run/user/1000/podman/podman.sock";
-      DRI_PRIME = "0";
+      DRI_PRIME = "1";
     };
     sessionVariables = {
       EGL_PLATFORM = "wayland";
@@ -153,6 +147,8 @@
       "pt_BR.UTF-8/UTF-8"
     ];
   };
+
+  swapDevices = [ { device = "/dev/nvme0n1p3"; } ];
 
   system.stateVersion = "25.11"; 
 }

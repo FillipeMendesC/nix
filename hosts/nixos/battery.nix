@@ -10,13 +10,6 @@
     settings = {
       START_CHARGE_THRESH_BAT1 = 75;
       STOP_CHARGE_THRESH_BAT1 = 80;
-
-      
-      
-
-      
-      
-
       # Conectado
       RUNTIME_PM_ON_AC = "auto";
 
@@ -33,5 +26,5 @@
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
       CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
     };
-};
+  };
 }
