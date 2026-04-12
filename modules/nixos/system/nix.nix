@@ -8,7 +8,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 3d --max-freed 1G"; 
+      options = "--delete-older-than 3d"; 
     };
   };
 
@@ -17,6 +17,7 @@
       git
       curl
       docker-compose
+      pciutils
     ];
   };
 

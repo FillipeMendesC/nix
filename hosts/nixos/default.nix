@@ -20,6 +20,7 @@
     ../../modules/nixos/hardware/nvidia.nix
     ../../modules/nixos/hardware/graphics.nix
     ../../modules/nixos/hardware/ssd.nix
+    ../../modules/nixos/hardware/audio.nix
 
     # Desktop
     ../../modules/nixos/desktop/plasma.nix

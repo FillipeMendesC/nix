@@ -1,6 +1,5 @@
 { pkgs, inputs, config, ... }: 
 {
-  # Aqui a magica começa
   programs.home-manager.enable = true;
 
   imports = [
@@ -15,7 +14,6 @@
   home.homeDirectory = "/home/eus";
 
   home.packages = with pkgs; [
-    git
     neovim
     jetbrains.idea
     jetbrains.idea-oss
@@ -24,15 +22,14 @@
     nodejs_24
     vscode
     corepack
-    gamemode
     protonup-qt
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-    gh
     obsidian
     bruno
     fzf
     nix-search-tv
     python3
+    nixd
   ];
 
   home.stateVersion = "25.11"; 
