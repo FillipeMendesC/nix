@@ -34,9 +34,17 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
-          ./hosts/nixos/configuration.nix
+          ./hosts/nixos/default.nix
           { nixpkgs.overlays = [ overlay-unstable ]; }
           inputs.milk-grub-theme.nixosModule
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.users.eus = import ./users/eus/home.nix;
+          }
         ];
       };
 
@@ -44,7 +52,7 @@
         inherit pkgs;
         extraSpecialArgs = { inherit inputs; };
         modules = [
-          ./modules/home-manager/home.nix
+          ./users/eus/home.nix
           { nixpkgs.overlays = [ overlay-unstable ]; }
         ];
       };

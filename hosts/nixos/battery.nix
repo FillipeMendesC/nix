@@ -10,6 +10,7 @@
     settings = {
       START_CHARGE_THRESH_BAT1 = 75;
       STOP_CHARGE_THRESH_BAT1 = 80;
+      
       # Conectado
       RUNTIME_PM_ON_AC = "auto";
 
