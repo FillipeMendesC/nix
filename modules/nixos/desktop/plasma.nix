@@ -1,7 +1,7 @@
 { ... }: {
   services = {
     displayManager.sddm.enable = true;
-    desktopManager.plasma6.enable = true; # Fixed from systemManager
+    desktopManager.plasma6.enable = true;
     xserver = {
       enable = true; 
       xkb = {

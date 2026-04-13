@@ -17,7 +17,6 @@
       shellAliases = {
         ll = "ls -l";
         nixos-reload = "sudo nixos-rebuild switch --flake /home/eus/nix/";
-        home-reload = "home-manager switch --flake /home/eus/nix/";
       };
 
       history = {

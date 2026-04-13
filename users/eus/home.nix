@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, ... }: 
+{ pkgs, inputs, ... }: 
 {
   programs.home-manager.enable = true;
 
@@ -8,6 +8,7 @@
     ./apps/ns-build.nix
     ./apps/zsh.nix
     ./apps/git.nix
+    ./apps/vscode.nix
   ];
 
   home.username = "eus";
@@ -20,7 +21,6 @@
     jdk21
     maven
     nodejs_24
-    vscode
     corepack
     protonup-qt
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -30,6 +30,8 @@
     nix-search-tv
     python3
     nixd
+    nixfmt
+    vlc
   ];
 
   home.stateVersion = "25.11"; 

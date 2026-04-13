@@ -17,6 +17,8 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
+      username = "eus";
+      hostname = "nixos";
 
       pkgs = import nixpkgs {
         inherit system;
@@ -31,10 +33,10 @@
         };
       };
     in {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+      nixosConfigurations.${hostname}= nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs username hostname ; };
         modules = [
-          ./hosts/nixos/default.nix
+          ./hosts/${hostname}/default.nix
           { nixpkgs.overlays = [ overlay-unstable ]; }
           inputs.milk-grub-theme.nixosModule
 
@@ -42,18 +44,10 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.eus = import ./users/eus/home.nix;
+            home-manager.backupFileExtension = "backup";
+            home-manager.extraSpecialArgs = { inherit inputs username hostname ; };
+            home-manager.users.${username} = import ./users/${username}/home.nix;
           }
-        ];
-      };
-
-      homeConfigurations."eus" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = { inherit inputs; };
-        modules = [
-          ./users/eus/home.nix
-          { nixpkgs.overlays = [ overlay-unstable ]; }
         ];
       };
     };
