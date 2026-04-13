@@ -7,8 +7,8 @@ let
       fzf
       nix-search-tv
     ];
-    
-    checkPhase = ""; 
+
+    checkPhase = "";
 
     text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
   };

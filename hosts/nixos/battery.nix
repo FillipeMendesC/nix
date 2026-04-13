@@ -1,5 +1,4 @@
-{ pkgs, lib, ... }:
-
+{ ... }:
 {
   #bypass no do kde que NÃO FUNCIONA POR ALGUM MOTIVO
 
@@ -12,11 +11,11 @@
 
       START_CHARGE_THRESH_BAT1 = 75;
       STOP_CHARGE_THRESH_BAT1 = 80;
-      
+
       # Conectado
       RUNTIME_PM_ON_AC = "auto";
 
-      PCIE_ASPM_ON_AC = "default"; 
+      PCIE_ASPM_ON_AC = "default";
 
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";

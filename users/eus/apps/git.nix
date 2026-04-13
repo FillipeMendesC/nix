@@ -1,10 +1,11 @@
-{ ... }: {
+{ ... }:
+{
   programs = {
     git = {
       enable = true;
       settings = {
         user.email = "fillipemcoelho@hotmail.com";
-        user.name  = "FillipeMendesC";
+        user.name = "FillipeMendesC";
         init.defaultBranch = "main";
         pull.rebase = true;
       };

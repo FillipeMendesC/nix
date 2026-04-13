@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: 
+{ pkgs, inputs, ... }:
 {
   programs.home-manager.enable = true;
 
@@ -34,5 +34,5 @@
     vlc
   ];
 
-  home.stateVersion = "25.11"; 
+  home.stateVersion = "25.11";
 }

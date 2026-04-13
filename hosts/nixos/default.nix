@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   imports = [
 
@@ -26,9 +27,9 @@
     ../../modules/nixos/desktop/plasma.nix
     ../../modules/nixos/desktop/gaming.nix
     ../../modules/nixos/desktop/wayland.nix
-    ../../modules/nixos/desktop/fonts.nix 
+    ../../modules/nixos/desktop/fonts.nix
 
   ];
 
-  system.stateVersion = "25.11"; 
+  system.stateVersion = "25.11";
 }

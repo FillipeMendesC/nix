@@ -1,20 +1,21 @@
-{ ... }: {
+{ ... }:
+{
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = false;
       grub = {
-          enable = true;
-          gfxmodeEfi = "1920x1200";
-          gfxpayloadEfi = "keep";
-          milk-theme.enable = true;
-          device = "nodev";
-          efiSupport = true;
-        };
+        enable = true;
+        gfxmodeEfi = "1920x1200";
+        gfxpayloadEfi = "keep";
+        milk-theme.enable = true;
+        device = "nodev";
+        efiSupport = true;
+      };
     };
 
-    kernelParams = [ 
-      "i915.enable_guc=3" 
+    kernelParams = [
+      "i915.enable_guc=3"
       "i915.enable_fbc=1"
       "nvidia.NVreg_DynamicPowerManagement=0x02"
       "nvidia.NVreg_EnableS0ixPowerManagement=1"
