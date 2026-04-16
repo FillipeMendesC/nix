@@ -10,6 +10,9 @@
     ./apps/git.nix
     ./apps/vscode.nix
     ./apps/hyprland/hyprland.nix
+    ./apps/hyprland/waybar.nix
+    ./apps/hyprland/wlogout.nix
+    ./services/kwallet.nix
   ];
 
   home.username = "eus";
@@ -41,8 +44,18 @@
     grim
     slurp
     wl-clipboard
-    networkmanagerapplet # Crucial for Wi-Fi management in the bar
     blueman
+    kdePackages.dolphin
+    kdePackages.kate
+    pavucontrol
+    brightnessctl
+    hyprcursor
+    hyprdim
+    hyprlock
+    pywal16
+    hyprpicker
+    grimblast
+    wf-recorder
   ];
 
   home.stateVersion = "25.11";

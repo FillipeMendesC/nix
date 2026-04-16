@@ -30,6 +30,7 @@
       curl
       docker-compose
       pciutils
+      nh
     ];
   };
 

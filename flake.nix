@@ -12,6 +12,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     milk-grub-theme.url = "github:gemakfy/MilkGrub";
+    stylix.url = "github:nix-community/stylix/release-25.11";
   };
 
   outputs =
@@ -38,8 +39,12 @@
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs username hostname; };
         modules = [
+
+          inputs.stylix.nixosModules.stylix
           ./hosts/${hostname}/default.nix
+
           { nixpkgs.overlays = [ overlay-unstable ]; }
+
           inputs.milk-grub-theme.nixosModule
 
           home-manager.nixosModules.home-manager
