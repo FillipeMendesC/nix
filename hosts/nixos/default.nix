@@ -28,6 +28,7 @@
     ../../modules/nixos/desktop/gaming.nix
     ../../modules/nixos/desktop/wayland.nix
     ../../modules/nixos/desktop/fonts.nix
+    ../../modules/nixos/desktop/hyprland.nix
 
   ];
 

@@ -9,6 +9,7 @@
     ./apps/zsh.nix
     ./apps/git.nix
     ./apps/vscode.nix
+    ./apps/hyprland/hyprland.nix
   ];
 
   home.username = "eus";
@@ -28,10 +29,20 @@
     bruno
     fzf
     nix-search-tv
-    python3
     nixd
     nixfmt
     vlc
+    uv
+    python3
+    waybar
+    wofi
+    mako
+    hyprpaper
+    grim
+    slurp
+    wl-clipboard
+    networkmanagerapplet # Crucial for Wi-Fi management in the bar
+    blueman
   ];
 
   home.stateVersion = "25.11";
