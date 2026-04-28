@@ -11,16 +11,9 @@
       finegrained = true;
     };
     prime = {
-      offload.enable = true;
-      offload.enableOffloadCmd = true;
       intelBusId = "PCI:0@0:2:0";
       nvidiaBusId = "PCI:1@0:0:0";
     };
-  };
-
-  boot = {
-    kernelParams = [
-      "nvidia-drm.modeset=1"
-    ];
+    primeBatterySaverSpecialisation = true;
   };
 }

@@ -2,24 +2,26 @@
   description = "My NixOS and Home Manager Flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    
+    nix-jetbrains-plugins.url = "github:nix-community/nix-jetbrains-plugins";
     hyprland.url = "github:hyprwm/Hyprland";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     milk-grub-theme.url = "github:gemakfy/MilkGrub";
-    stylix.url = "github:nix-community/stylix/release-25.11";
+    stylix.url = "github:nix-community/stylix";
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      nixpkgs-unstable,
       home-manager,
       ...
     }@inputs:
@@ -27,25 +29,20 @@
       system = "x86_64-linux";
       username = "eus";
       hostname = "nixos";
-
-      overlay-unstable = final: prev: {
-        unstable = import nixpkgs-unstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      };
     in
     {
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs username hostname; };
         modules = [
-
           inputs.stylix.nixosModules.stylix
           ./hosts/${hostname}/default.nix
 
-          { nixpkgs.overlays = [ overlay-unstable ]; }
-
           inputs.milk-grub-theme.nixosModule
+
+          inputs.nixos-hardware.nixosModules.asus-battery
+          inputs.nixos-hardware.nixosModules.common-cpu-intel
+          inputs.nixos-hardware.nixosModules.common-pc-ssd
+          inputs.nixos-hardware.nixosModules.common-gpu-nvidia
 
           home-manager.nixosModules.home-manager
           {

@@ -1,10 +1,5 @@
 { pkgs, ... }:
 {
-  environment.sessionVariables = {
-    EGL_PLATFORM = "wayland";
-    NIXOS_OZONE_WL = "1";
-  };
-
   xdg.portal = {
     enable = true;
     extraPortals = [

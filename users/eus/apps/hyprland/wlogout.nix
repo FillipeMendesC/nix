@@ -5,7 +5,7 @@
     layout = [
       {
         label = "lock";
-        action = "swaylock";
+        action = "pkill -9 -x wlogout; sleep 0.12; loginctl lock-session";
         text = "Lock";
         keybind = "l";
       }
@@ -34,5 +34,6 @@
         keybind = "S";
       }
     ];
+    
   };
 }

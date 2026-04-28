@@ -17,6 +17,7 @@
     ../../modules/nixos/system/virtualisation.nix
     ../../modules/nixos/system/nix.nix
     ../../modules/nixos/system/security.nix
+    ../../modules/nixos/system/usb.nix
 
     # Hardware Modules
     ../../modules/nixos/hardware/nvidia.nix
@@ -35,5 +36,5 @@
 
   ];
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 }
