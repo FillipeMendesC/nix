@@ -1,5 +1,7 @@
 { ... }:
 {
+	
+
 	home.file.".local/bin/hyprdim-toggle" = {
 		executable = true;
 		text = ''

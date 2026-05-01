@@ -5,8 +5,8 @@
     enable32Bit = true;
 
     extraPackages = with pkgs; [
-      intel-media-driver # Modern Intel media driver
-      nvidia-vaapi-driver # NVIDIA VA-API support
+      intel-media-driver
+      nvidia-vaapi-driver
       libvdpau-va-gl
     ];
   };

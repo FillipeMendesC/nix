@@ -1,10 +1,12 @@
 { pkgs, ... }:
 {
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.kdePackages.xdg-desktop-portal-kde
-    ];
-    config.common.default = "*";
+xdg.portal = {
+  enable = true;
+
+  extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; 
+  config.common = {
+    default = [ "hyprland" "gtk" ];
+    "org.freedesktop.impl.portal.Secret" = [ "kde" ];
   };
+};
 }

@@ -16,19 +16,18 @@
     ./apps/hyprland/hyprcursor.nix
     ./apps/hyprland/hyprlock.nix
     ./apps/hyprland/hypridle.nix
-    ./apps/hyprland/hyprdim.nix
     ./apps/hyprland/waybar.nix
     ./apps/hyprland/wlogout.nix
     ./apps/hyprland/mako.nix
     ./services/kwallet.nix
     ./services/qt.nix
     ./shell/quickshell.nix
+    ./scripts/scripts.nix
+    ./apps/rmpc.nix
   ];
 
   home.username = "eus";
   home.homeDirectory = "/home/eus";
-
-  programs.btop.enable = true;
 
   home.packages = with pkgs; [
     neovim
@@ -56,28 +55,27 @@
     waybar
     wofi
     hyprpaper
-    grim
-    slurp
     wl-clipboard
     thunar
     kdePackages.kate
     pavucontrol
     brightnessctl
-    hyprcursor
-    hyprdim
-    hypridle
-    hyprlock
     hyprpicker
     grimblast
     wf-recorder
-    firefox
     imv
     ffmpegthumbnailer
     todo
     eza
     nwg-displays
+    btop-cuda
+    networkmanagerapplet
+    heroic
+    jq
+    libnotify
+    bash
   ];
 
-  services.network-manager-applet.enable = true;
+
   home.stateVersion = "26.05";
 }

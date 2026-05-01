@@ -9,6 +9,7 @@
       "$terminal" = "kitty";
       "$fileManager" = "kitty yazi";
       "$menu" = "wofi --show drun";
+      "$scripts" = "$HOME/.config/hypr/scripts";
 
       monitor = ",preferred,auto,1";
 
@@ -24,6 +25,10 @@
         "$mod, E, exec, $fileManager"
         "$mod, W, exec, zen-beta"
         "$mod, r, exec, $menu"
+        
+        "$mod, Escape, exec, wlogout"
+        "$mod, p, exec, nwg-displays"
+        ", XF86TouchpadToggle, exec, $scripts/toggle-touchpad.sh"
         
         # close/toggle
         "$mod SHIFT, C, killactive"

@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
 	services.hypridle = {
 		enable = true;
@@ -28,4 +28,6 @@
 			];
 		};
 	};
+
+	home.packages = with pkgs; [ hyprdim ];
 }

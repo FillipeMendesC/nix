@@ -20,6 +20,7 @@
     ../../modules/nixos/system/usb.nix
 
     # Hardware Modules
+    ../../modules/nixos/hardware/asus.nix
     ../../modules/nixos/hardware/nvidia.nix
     ../../modules/nixos/hardware/graphics.nix
     ../../modules/nixos/hardware/ssd.nix

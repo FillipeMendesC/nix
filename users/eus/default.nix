@@ -7,11 +7,11 @@
     isNormalUser = true;
     extraGroups = [
       "wheel"
-      "networkmanager"
       "podman"
       "docker"
       "gamemode"
       "video"
+      "render"
     ];
     shell = pkgs.zsh;
   };

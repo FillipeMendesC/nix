@@ -3,13 +3,16 @@
   programs.waybar = {
     enable = true;
     systemd.enable = true;
-
     settings = [
       {
         layer = "top";
         position = "top";
-        height = 32;
-        spacing = 8;
+        height = 40;
+        spacing = 6;
+
+        margin-top = 6;
+        margin-left = 10;
+        margin-right = 10;
 
         modules-left = [
           "hyprland/workspaces"
@@ -30,70 +33,55 @@
         "hyprland/workspaces" = {
           disable-scroll = false;
           all-outputs = true;
-          format = "{icon}";
+          format = "{icon} ";
+          persistent-workspaces = {
+            "*" = 6;
+          };
           format-icons = {
-            active = "";
-            default = "";
-            urgent = "";
+            active  = "●";
+            default = "○";
+            urgent  = "◉";
           };
         };
 
         "hyprland/window" = {
-          max-length = 60;
+          max-length = 50;
           separate-outputs = true;
         };
 
         clock = {
-          format = "  {:%H:%M}";
+          format = " {:%H:%M}";
           tooltip-format = "<big>{:%A, %d %B %Y}</big>";
         };
 
         pulseaudio = {
           format = "{icon}  {volume}%";
           format-muted = "  muted";
-          format-icons = {
-            default = [
-              ""
-              ""
-              ""
-            ];
-          };
+          format-icons.default = [ "" "" "" ];
           scroll-step = 5;
           on-click = "pavucontrol";
         };
 
         backlight = {
-          format = "{icon}  {percent}%";
-          format-icons = [
-            "󰃞"
-            "󰃟"
-            "󰃠"
-          ];
+          format = "{icon} {percent}%";
+          format-icons = [ "󰃞" "󰃟" "󰃠" ];
         };
 
         network = {
-          format-wifi = "  {essid} ({signalStrength}%)";
+          format-wifi = "󰖩  {essid} ({signalStrength}%)";
           format-ethernet = "󰈀  {ipaddr}";
           format-disconnected = "󰖪  offline";
           tooltip-format = "{ifname} • {ipaddr}/{cidr}";
+          on-click = "nm-connection-editor";
         };
 
         battery = {
           interval = 10;
-          states = {
-            warning = 30;
-            critical = 15;
-          };
-          format = "{icon}  {capacity}%";
-          format-charging = "  {capacity}%";
-          format-plugged = "  {capacity}%";
-          format-icons = [
-            ""
-            ""
-            ""
-            ""
-            ""
-          ];
+          states = { warning = 30; critical = 15; };
+          format = "{icon} {capacity}%";
+          format-charging = "󰂄 {capacity}%";
+          format-plugged  = " {capacity}%";
+          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
         };
 
         cpu = {
@@ -123,18 +111,41 @@
         font-family: "JetBrainsMono Nerd Font", "Noto Sans", sans-serif;
         font-size: 13px;
         min-height: 0;
+        border: none;
+        border-radius: 0;
       }
 
+      /* The bar itself: black, pill-shaped via border-radius */
       window#waybar {
-        background: rgba(17, 17, 27, 0.6);
+        background: none;
         color: #cdd6f4;
+        border-radius: 12px;
+      }
+
+      /* Each section (left/center/right) gets its own island feel */
+      .modules-left,
+      .modules-center,
+      .modules-right {
+        background: #111111;
+        border-radius: 10px;
+        padding: 0 6px;
+        margin: 4px 4px;
+      }
+
+      /* Workspace buttons */
+      #workspaces {
+        padding: 0 4px;
       }
 
       #workspaces button {
-        color: #a6adc8;
-        padding: 0 8px;
-        border: none;
+        color: #555577;
+        padding: 0 6px;
         background: transparent;
+        transition: color 0.2s;
+      }
+
+      #workspaces button label {
+        font-size: 12px;
       }
 
       #workspaces button.active {
@@ -145,22 +156,34 @@
         color: #f38ba8;
       }
 
-      #window {
+      /* All right-side modules share the same pill padding */
+      #clock,
+      #pulseaudio,
+      #backlight,
+      #network,
+      #battery,
+      #cpu,
+      #memory,
+      #tray,
+      #custom-power {
+        padding: 0 10px;
         color: #cdd6f4;
       }
 
-      #clock, #pulseaudio, #backlight, #network, #battery, #cpu, #me2mory, #tray, #custom-power {
-        padding: 0 10px;
-        margin: 4px 0;
+      #window {
+        color: #888899;
+        padding: 0 8px;
+        font-style: italic;
       }
 
-      #clock { color: #f9e2af; }
-      #pulseaudio { color: #89b4fa; }
-      #backlight { color: #f9e2af; }
-      #network { color: #94e2d5; }
-      #battery { color: #a6e3a1; }
-      #cpu { color: #fab387; }
-      #memory { color: #cba6f7; }
+      /* Individual accent colors */
+      #clock        { color: #f9e2af; }
+      #pulseaudio   { color: #89b4fa; }
+      #backlight    { color: #f9e2af; }
+      #network      { color: #94e2d5; }
+      #battery      { color: #a6e3a1; }
+      #cpu          { color: #fab387; }
+      #memory       { color: #cba6f7; }
       #custom-power { color: #f38ba8; }
     '';
   };

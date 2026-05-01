@@ -10,9 +10,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-jetbrains-plugins.url = "github:nix-community/nix-jetbrains-plugins";
-    hyprland.url = "github:hyprwm/Hyprland";
+
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     milk-grub-theme.url = "github:gemakfy/MilkGrub";
     stylix.url = "github:nix-community/stylix";
@@ -39,10 +43,8 @@
 
           inputs.milk-grub-theme.nixosModule
 
-          inputs.nixos-hardware.nixosModules.asus-battery
           inputs.nixos-hardware.nixosModules.common-cpu-intel
           inputs.nixos-hardware.nixosModules.common-pc-ssd
-          inputs.nixos-hardware.nixosModules.common-gpu-nvidia
 
           home-manager.nixosModules.home-manager
           {

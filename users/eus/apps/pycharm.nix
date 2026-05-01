@@ -7,11 +7,11 @@ in
   home.packages = [
     (jetbrains-lib.buildIdeWithPlugins pkgs "pycharm" [
       "com.github.copilot"        
-      "nix-idea"             
-      "com.koxudaxi.ruff"           
+      "nix-idea"                     
       "com.koxudaxi.pydantic"       
       "ru.adelf.idea.dotenv"  
-      "izhangzhihao.rainbow.brackets" 
+      "izhangzhihao.rainbow.brackets"
+      "com.jetbrains.plugins.webDeployment" 
     ])
   ];
 }

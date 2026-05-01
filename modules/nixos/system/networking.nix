@@ -6,4 +6,6 @@
   };
 
   hardware.bluetooth.enable = true;
+
+  networking.timeServers = [ "0.br.pool.ntp.org" ];
 }

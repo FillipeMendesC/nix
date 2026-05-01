@@ -38,5 +38,7 @@
 
   programs.nix-ld.enable = true;
 
+  hardware.enableRedistributableFirmware = true;
+
   nixpkgs.config.allowUnfree = true;
 }
