@@ -3,6 +3,9 @@
   programs.home-manager.enable = true;
 
   imports = [
+    inputs.nvf.homeManagerModules.default
+    ./config
+    ./services
     ./apps/vesktop.nix
     ./apps/kitty.nix
     ./apps/ns-build.nix
@@ -12,30 +15,24 @@
     ./apps/yazi.nix
     ./apps/zoxide.nix
     ./apps/pycharm.nix
-    ./apps/hyprland/hyprland.nix
-    ./apps/hyprland/hyprcursor.nix
-    ./apps/hyprland/hyprlock.nix
-    ./apps/hyprland/hypridle.nix
-    ./apps/hyprland/waybar.nix
-    ./apps/hyprland/wlogout.nix
-    ./apps/hyprland/mako.nix
-    ./services/kwallet.nix
-    ./services/qt.nix
+    ./apps/nvim.nix
+    ./wm/hyprland/hyprland.nix
     ./shell/quickshell.nix
     ./scripts/scripts.nix
     ./apps/rmpc.nix
+    ./apps/rofi.nix
+    ./apps/direnv.nix
   ];
 
   home.username = "eus";
   home.homeDirectory = "/home/eus";
 
   home.packages = with pkgs; [
-    neovim
-    (jetbrains.idea.override { 
+    (jetbrains.idea.override {
       vmopts = ''
         -Xmx4096m
         -Dawt.toolkit.name=WLToolkit
-      ''; 
+      '';
     })
     jetbrains.idea-oss
     jdk21
@@ -51,9 +48,7 @@
     nixfmt
     vlc
     uv
-    python3
     waybar
-    wofi
     hyprpaper
     wl-clipboard
     thunar
@@ -74,8 +69,23 @@
     jq
     libnotify
     bash
+    yt-dlp
+    jmeter
+    ripgrep
+    fd
+    super-productivity
+    peazip
+    p7zip-rar
+    unrar
+    unzip
+    zip
+    lz4
+    tree-sitter
+    qbittorrent
+    winetricks
+    wine
+    gamescope
   ];
-
 
   home.stateVersion = "26.05";
 }

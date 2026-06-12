@@ -10,8 +10,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
+    nvf = {
+      url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -39,14 +39,20 @@
         specialArgs = { inherit inputs username hostname; };
         modules = [
           inputs.stylix.nixosModules.stylix
-          ./hosts/${hostname}/default.nix
+          
 
           inputs.milk-grub-theme.nixosModule
 
           inputs.nixos-hardware.nixosModules.common-cpu-intel
           inputs.nixos-hardware.nixosModules.common-pc-ssd
 
+          inputs.nvf.nixosModules.default
+          
           home-manager.nixosModules.home-manager
+
+            # nvf's Home Manager module should be imported into the user's
+            # home configuration, not as a NixOS system module.
+          ./hosts/${hostname}/default.nix
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

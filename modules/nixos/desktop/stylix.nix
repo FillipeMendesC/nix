@@ -30,6 +30,7 @@
     targets = {
       grub.enable = lib.mkDefault false;
     };
+
     polarity = "dark";
   };
 }
