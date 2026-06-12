@@ -1,6 +1,5 @@
 local hl = hl or {}
 require("input")
--- require("monitors") quando nwg-displays estiver em 4.0.3
 
 -- Essential variables
 local mod = "SUPER"

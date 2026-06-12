@@ -15,6 +15,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    polymc = {
+      url = "github:PolyMC/PolyMC";
+    };
+
     nix-jetbrains-plugins.url = "github:nix-community/nix-jetbrains-plugins";
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
@@ -36,6 +40,7 @@
     in
     {
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
+        nixpkgs.overlays = [ inputs.polymc.overlay ];
         specialArgs = { inherit inputs username hostname; };
         modules = [
           inputs.stylix.nixosModules.stylix

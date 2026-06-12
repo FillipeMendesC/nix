@@ -4,5 +4,6 @@
     ./mako.nix
     ./qt.nix
     ./pam.nix
+    ./ollma.nix
   ];
 }

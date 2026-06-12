@@ -85,6 +85,8 @@
     winetricks
     wine
     gamescope
+    firefox
+    obs-studio
   ];
 
   home.stateVersion = "26.05";
