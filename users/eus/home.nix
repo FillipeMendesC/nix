@@ -3,7 +3,6 @@
   programs.home-manager.enable = true;
 
   imports = [
-    inputs.nvf.homeManagerModules.default
     ./config
     ./services
     ./apps/vesktop.nix
@@ -16,6 +15,7 @@
     ./apps/zoxide.nix
     ./apps/pycharm.nix
     ./apps/nvim.nix
+    ./apps/xmcl.nix
     ./wm/hyprland/hyprland.nix
     ./shell/quickshell.nix
     ./scripts/scripts.nix
@@ -87,6 +87,8 @@
     gamescope
     firefox
     obs-studio
+    filezilla
+    mysql-workbench
   ];
 
   home.stateVersion = "26.05";
