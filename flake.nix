@@ -10,13 +10,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvf = {
-      url = "github:NotAShelf/nvf";
+    xmcl = {
+      url = "github:x45iq/xmcl-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    polymc = {
-      url = "github:PolyMC/PolyMC";
     };
 
     nix-jetbrains-plugins.url = "github:nix-community/nix-jetbrains-plugins";
@@ -40,23 +36,24 @@
     in
     {
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
-        nixpkgs.overlays = [ inputs.polymc.overlay ];
-        specialArgs = { inherit inputs username hostname; };
+        specialArgs = {
+          inherit
+            inputs
+            username
+            hostname
+            system
+            ;
+        };
         modules = [
           inputs.stylix.nixosModules.stylix
-          
 
           inputs.milk-grub-theme.nixosModule
 
           inputs.nixos-hardware.nixosModules.common-cpu-intel
           inputs.nixos-hardware.nixosModules.common-pc-ssd
 
-          inputs.nvf.nixosModules.default
-          
           home-manager.nixosModules.home-manager
 
-            # nvf's Home Manager module should be imported into the user's
-            # home configuration, not as a NixOS system module.
           ./hosts/${hostname}/default.nix
           {
             home-manager.useGlobalPkgs = true;
