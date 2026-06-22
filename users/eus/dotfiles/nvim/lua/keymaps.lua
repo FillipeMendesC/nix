@@ -18,7 +18,7 @@ map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle file tree" })
 map("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "<leader>bd", function()
-	require("bufdelete").bufdelete(0, false)
+  require("bufdelete").bufdelete(0, false)
 end, { desc = "Delete buffer while preserving layout" })
 
 -- Utilities
@@ -43,26 +43,27 @@ map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
 -- DAP (Debugger)
 map("n", "<leader>db", function()
-	require("dap").toggle_breakpoint()
+  require("dap").toggle_breakpoint()
 end, { desc = "Toggle breakpoint" })
 map("n", "<leader>dc", function()
-	require("dap").continue()
+  require("dap").continue()
 end, { desc = "Continue" })
 map("n", "<leader>do", function()
-	require("dap").step_over()
+  require("dap").step_over()
 end, { desc = "Step over" })
 map("n", "<leader>di", function()
-	require("dap").step_into()
+  require("dap").step_into()
 end, { desc = "Step into" })
 map("n", "<leader>du", function()
-	require("dapui").toggle()
+  require("dapui").toggle()
 end, { desc = "Toggle DAP UI" })
 
 -- Persistence (Session Management)
 
 vim.keymap.set("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], { desc = "Restore Session" })
 
-vim.keymap.set("n", "<leader>ql", [[<cmd>lua require("persistence").load({ last = true })<cr>]], { desc = "Restore Last Session" })
+vim.keymap.set("n", "<leader>ql", [[<cmd>lua require("persistence").load({ last = true })<cr>]],
+  { desc = "Restore Last Session" })
 
 vim.keymap.set("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], { desc = "Don't Save Current Session" })
 
@@ -95,3 +96,4 @@ map({ "n", "v" }, "<leader>ca", "<cmd>CodeCompanionActions<cr>", { desc = "AI Ac
 -- Quick Escape
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 map("t", "jk", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+map('i', '<Tab>', '<Tab>')
